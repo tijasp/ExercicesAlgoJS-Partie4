@@ -73,50 +73,83 @@
     
     // -----------------------------------------------------
     /*
-     * --- Courte description de la fonction ICI ---
-     * Paramètres : --- paramètres ICI si il y en a ---
+     * Génère une note aléatoire entre 0 et 20
+     * Paramètres : /
      *  
-     * Retour : --- retour de la fonction ICI ---
+     * Retour : Note Aléatoire
      */
 
-    function genererNote () { 
-        // CODE HERE
-
-    }
+    function genererNote() { 
+        const noteAleatoire = Math.floor(Math.random() * 21);
+        return noteAleatoire;
+    };
 
 
     // -----------------------------------------------------
 
     // création des 3 élèves et rangement dans le tableau des élèves
-    
+    const pierreDupont = new Eleve("Dupont", "Pierre", "Kercode");
+    const marieFontaine = new Eleve("Fontaine", "Marie", "CDA");
+    const johnHunter = new Eleve("Hunter", "John", "BTS SIO");
 
+    // Ajout des objets créés au tableau
+    groupeEleves.push(pierreDupont, marieFontaine, johnHunter);
+    // Verification que les objets ont bien été créés / ajoutés au tableau
+    console.log(groupeEleves);
 
     // lecture et affichage du prénom de l'objet pierreDupont
+    console.log(pierreDupont.prenom);
     
 
 
     // lecture et affichage de la classe de marieFontaine
-    
+    console.log(marieFontaine.classe);
+
 
 
     // attribution de notes en maths
-    
+
 
 
     // attribution des notes en mathématique (marieFontaine et pierreDupont)
     // attribution de la note de 18 à johnHunter
-    
+    // param1: note param2: matiere
+    marieFontaine.ajouterNote(9, "maths");
+    pierreDupont.ajouterNote(14, "maths");
+    johnHunter.ajouterNote(18, "algorithmique");
 
 
     // ajout d'une note aléatoire en algorithmique pour chaque élève
-
+    groupeEleves.forEach(eleve => {
+        // Ajout de la valeur de retour de la fonction genererNote() dans le tableau des notes d'algorithmique  pour chaques élèves.
+        eleve.ajouterNote(genererNote(), "algorithmique");
+    });
+    // Verification des objets pour voir si les notes on été ajoutées aux tableaux
+    console.log(groupeEleves);
 
 
     // moyenne du groupe en algorithmique
-    
+    // Initialisation de la variable qui stocke le total de points des notes
+    let totalNotes = 0;
+    // Initialisation de la variable qui stocke le nombre de notes
+    let nombreNotes = 0;
+    // Boucle qui parcours tout les objets du tableau "groupeEleves"
+    groupeEleves.forEach(eleve => {
+        // Boucle qui parcours le tableau "algorithmique" de l'objet "notes" de l'objet "eleve" parcouru
+        eleve.notes.algorithmique.forEach(note => {
+            // Ajout de la note parcouru par la boucle a la variable qui stock le total de celles-ci
+            totalNotes += note;
+            // Ajoute 1 au compteur de notes
+            nombreNotes ++;
+        });
+    });
+
+    // Divise le total de points par le nombre de notes, et arrondi le résultat a 2 chiffres après la virgule
+    const moyenneClasse = (totalNotes / nombreNotes).toFixed(2);
+    // Affichage de la moyenne de classe dans la console
+    console.log(moyenneClasse)
     
 
 </script>
 </body>
 </html>
-
